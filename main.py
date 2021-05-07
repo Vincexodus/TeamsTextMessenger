@@ -30,8 +30,8 @@ survey_topic = j_file["message_info"]["survey_topic"]
 form_link = j_file["message_info"]["form_link"]
 
 message = f"Hey, my group and I from {intake_code} {course_type} are currently conducting an {survey_type} for our {course_name} assignment. "+\
-            "We would appreciate the help of yours at spending a short 5 mins to fill up the survey about {survey_topic}. "+\
-            "Much appreciated! Thank you in advance and have a great day! {form_link} "
+          f"We would appreciate the help of yours at spending a short 5 mins to fill up the survey about {survey_topic}. "+\
+          f"Much appreciated! Thank you in advance and have a great day! {form_link} "
 
 # Navigate to microsoft team login browser
 driver.get("https://www.microsoft.com/en-my/microsoft-teams/group-chat-software")
@@ -71,41 +71,41 @@ except:
 # Navigate the chat icon button on side panel
 WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.ID, "app-bar-86fcd49b-61a2-4701-b771-54728cd291fb"))).click()
 
-# Navigate new chat icon button
-WebDriverWait(driver, 20).until(EC.element_to_be_clickable\
-  ((By.XPATH, "//button[@class ='ts-sym app-icons-fill-hover left-rail-header-button']"))).click()
 
-# Input to user search text box
-user_search = WebDriverWait(driver, 40).until(EC.presence_of_element_located\
-  ((By.XPATH, "//input[@class ='ts-search-input ng-pristine ng-valid ng-empty ng-touched']")))
-user_search.send_keys("TP060965")
+start_tp = 61200
+end_tp = 61210
+curr_receiver = ""
 
-time.sleep(3)
-# Select first user if exists
-user_search.send_keys(Keys.RETURN)
-time.sleep(2)
-user_search.send_keys(Keys.RETURN)
+for _ in range(int(end_tp-start_tp + 1)):
+  curr_tp = "{0:06}".format(start_tp)
+  curr_receiver = f"TP{curr_tp}"
 
-# # Press dismiss button
-# WebDriverWait(driver, 20).until(EC.element_to_be_clickable\
-#   ((By.XPATH, "//button[@class ='action-button']"))).click()
+  # for loop
+  # Navigate new chat icon button
+  WebDriverWait(driver, 20).until(EC.element_to_be_clickable\
+    ((By.XPATH, "//button[@class ='ts-sym app-icons-fill-hover left-rail-header-button']"))).click()
 
-# Locate textbox element and insert inputs
-message_input = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, "//*[@id='cke_1_contents']/div/div")))
-message_input.send_keys(message)
-message_input.send_keys(Keys.ENTER)
-print("message sent")
+  # Input to user search text box
+  user_search = WebDriverWait(driver, 40).until(EC.presence_of_element_located\
+    ((By.XPATH, "//input[@class ='ts-search-input ng-pristine ng-valid ng-empty ng-touched']")))
+  user_search.send_keys(curr_receiver)
 
+  print(f"Selecting user {curr_receiver}")
+  time.sleep(3)
+  # Select first user if exists
+  user_search.send_keys(Keys.RETURN)
+  time.sleep(2)
+  user_search.send_keys(Keys.RETURN)
 
+  # # Press dismiss button
+  # WebDriverWait(driver, 20).until(EC.element_to_be_clickable\
+  #   ((By.XPATH, "//button[@class ='action-button']"))).click()
 
+  # Locate textbox element and insert inputs
+  message_input = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, "//*[@id='cke_1_contents']/div/div")))
+  message_input.send_keys(message)
 
-
-
-
-
-# start_tp = 61209
-# end_t = 61300
-# for i in range(int(end_t-start_tp + 1)):
-#   curr_tp = "{0:06}".format(start_tp)
-#   print(f"TP{curr_tp}@mail.apu.edu.my")
-#   start_tp +=1 
+  # Send the message 
+  message_input.send_keys(Keys.ENTER)
+  print(f"message sent to {curr_receiver}")
+  start_tp +=1 
