@@ -72,11 +72,11 @@ except:
 WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.ID, "app-bar-86fcd49b-61a2-4701-b771-54728cd291fb"))).click()
 
 
-start_tp = 61200
-end_tp = 61210
+start_tp = int(j_file["receivers"]["start_tp"])
+end_tp = int(j_file["receivers"]["end_tp"])
 curr_receiver = ""
 
-for _ in range(int(end_tp-start_tp + 1)):
+for _ in range(end_tp-start_tp + 1):
   curr_tp = "{0:06}".format(start_tp)
   curr_receiver = f"TP{curr_tp}"
 

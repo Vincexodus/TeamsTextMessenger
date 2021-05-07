@@ -27,16 +27,20 @@ Automated message sender using Selenium Python
     "survey_topic": "What are the factors influencing students' academic performance",
     "course_type" : "Foundation",
     "course_name" : "ABC",
-    "form_link" : "https://www.google.com/"
+    "form_link" : "https://www.abc12345.com/"
+  },
+
+  "receivers" :
+  {
+    "start_tp": "061200",
+    "end_tp": "061205"
   }
 }
 ```
----
+
 ### Message structure
-```python
-"Hey, my group and I from {intake_code} {course_type} are currently conducting an {survey_type} for our {course_name} assignment. "+\
-"We would appreciate the help of yours at spending a short 5 mins to fill up the survey about {survey_topic}. "+\
-"Much appreciated! Thank you in advance and have a great day! {form_link} "
-```
+Hey, my group and I from `intake_code` `course_type` are currently conducting an `survey_type` for our `course_name` assignment\
+We would appreciate the help of yours at spending a short 5 mins to fill up the survey about `survey_topic`.\
+Much appreciated! Thank you in advance and have a great day! `form_link` "
 
 
